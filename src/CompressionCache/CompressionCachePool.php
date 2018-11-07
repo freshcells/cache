@@ -56,9 +56,6 @@ class CompressionCachePool implements CacheItemPoolInterface
                     $inner,
                     $this->compression
                 );
-                if ($this->defaultTtl !== null) {
-                    $elem->expiresAfter($this->defaultTtl);
-                }
             }
             $ret[$key] = $elem;
         }
