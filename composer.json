@@ -6,7 +6,7 @@
         "cache",
         "psr6"
     ],
-    "homepage": "https://github.com/orgs/freshcells",
+    "homepage": "https://github.com/freshcells/cache",
     "license": "MIT",
     "minimum-stability": "dev",
     "prefer-stable": true,
