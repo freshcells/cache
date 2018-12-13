@@ -6,6 +6,7 @@ class TestEntity {
 
     private $data = ['foo' => 'bar'];
     private $var = 'test';
+    public $foo;
 
     /**
      * @return array
