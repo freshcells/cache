@@ -40,6 +40,26 @@ Cache aware Traits for normal PSR-6 `CacheItemPoolInterface` and extended `Gener
 
 *CacheableTrait* and *GenerateableKeyCacheableTrait* provide wrapper method to fetch and save cache data.
 
+        ...
+        use CachePoolAwareTrait;
+        use CacheableTrait;
+    
+        public function load()
+        {
+            return $this->cacheable(
+                self::CACHE_KEY,
+                function () {
+                    $entity = new TestEntity();
+    
+                    return $entity;
+                },
+                function ($data) {
+                    return $data instanceof TestEntity;
+                }
+            );
+        }
+        ...
+
 
 ##### Todo
 Symfony Bridge Cache Bundle
