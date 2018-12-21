@@ -38,7 +38,9 @@ Data can be compressed and data will be serialized before its passed to the cach
 ### Traits
 Cache aware Traits for normal PSR-6 `CacheItemPoolInterface` and extended `GeneratableKeyCache` are provided.
 
-*CacheableTrait* provides a wrapper method to fetch and save cache data.
+*CacheableTrait* and ** provides a wrapper method to fetch and save cache data.
+
+
 
 ##### Todo
 Symfony Bridge Cache Bundle

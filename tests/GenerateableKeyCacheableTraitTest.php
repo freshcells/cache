@@ -3,23 +3,23 @@
 namespace Freshcells\Cache\Tests;
 
 use Freshcells\Cache\CacheFactory;
-use Freshcells\Cache\Tests\Resources\TestCacheableService;
+use Freshcells\Cache\Tests\Resources\TestGeneratebleKeyCacheableService;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 
-class CacheableTraitTest extends \PHPUnit_Framework_TestCase
+class GenerateableKeyCacheableTraitTest extends \PHPUnit_Framework_TestCase
 {
     public function testTrait()
     {
-        $service = new TestCacheableService();
+        $service = new TestGeneratebleKeyCacheableService();
 
         $innerCache = new ArrayAdapter();
-        $cache      = CacheFactory::createCompressionCache($innerCache);
+        $cache      = CacheFactory::createGeneratableKeyCache($innerCache);
 
         $service->setCache($cache);
 
-        $entity = $service->load();
-
-        $cachedItem   = $cache->getItem(TestCacheableService::CACHE_KEY);
+        $cacheKey     = ['this is' => 'the cache key'];
+        $entity       = $service->load($cacheKey);
+        $cachedItem   = $cache->getItemByVar($cacheKey);
         $cachedEntity = $cachedItem->get();
 
         $this->assertEquals($entity, $cachedEntity);
@@ -28,7 +28,7 @@ class CacheableTraitTest extends \PHPUnit_Framework_TestCase
         $cachedItem->set($cachedEntity);
         $cache->save($cachedItem);
 
-        $entity = $service->load();
+        $entity = $service->load($cacheKey);
 
         $this->assertEquals('cached', $entity->foo);
     }
